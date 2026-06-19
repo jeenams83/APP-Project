@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String     @id @default(cuid())
+  name          String?
+  email         String?    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  businessName  String?
+  businessType  String?
+  phone         String?
+  address       String?
+  plan          String     @default("basic")
+  accounts      Account[]
+  sessions      Session[]
+  customers     Customer[]
+  messages      Message[]
+  campaigns     Campaign[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Customer {
+  id          String             @id @default(cuid())
+  userId      String
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String?
+  phone       String
+  visitCount  Int                @default(1)
+  totalSpend  Float              @default(0)
+  lastVisit   DateTime           @default(now())
+  notes       String?
+  tags        String?
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  messages    MessageRecipient[]
+
+  @@unique([userId, phone])
+}
+
+model Campaign {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  messageText String
+  channel     String    @default("sms")
+  status      String    @default("draft")
+  sentAt      DateTime?
+  createdAt   DateTime  @default(now())
+  messages    Message[]
+}
+
+model Message {
+  id         String             @id @default(cuid())
+  userId     String
+  user       User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  campaignId String?
+  campaign   Campaign?          @relation(fields: [campaignId], references: [id])
+  content    String
+  channel    String             @default("sms")
+  status     String             @default("sent")
+  sentAt     DateTime           @default(now())
+  recipients MessageRecipient[]
+}
+
+model MessageRecipient {
+  id         String   @id @default(cuid())
+  messageId  String
+  message    Message  @relation(fields: [messageId], references: [id])
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+  status     String   @default("sent")
+}

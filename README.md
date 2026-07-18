@@ -5,8 +5,12 @@ gain admission to top US universities.
 
 ## 📂 What's in this project
 
-- **`index.html`** — Your entire website. It's a single file containing the design,
-  layout, and text. You can open it in any web browser.
+- **`index.html`** — The **English** version of your website.
+- **`index-ko.html`** — The **Korean** version (한국어). Visitors switch between the
+  two using the **ENG / 한국어** button in the top menu.
+
+Each file is a single, self-contained page with the design, layout, and text.
+You can open either one in any web browser.
 
 ## ▶️ How to preview the site on your computer
 
@@ -22,12 +26,16 @@ gain admission to top US universities.
 3. Type your new words, then **Save**.
 4. Refresh the browser to see the change.
 
+> **Tip:** If you change wording, update **both** `index.html` (English) and
+> `index-ko.html` (Korean) so the two versions stay in sync.
+
 ### Things you'll want to update
-- **Business name / logo** — search for `GW Consulting`.
-- **Contact info** — search for `hello@gwconsulting.com` and `+82 10-0000-0000`.
-- **Statistics** — search for `150+`, `92%`, etc. Use your real numbers.
-- **Testimonials** — search for `Mrs. Park` to find the review section.
-- **University names** — search for `Cornell` to find the logo strip.
+- **Testimonials** — the three reviews are **samples**. Search for `Mrs. Park`
+  (or `박OO` in the Korean file) and replace them with real quotes from your
+  students/parents, with their permission, before publishing.
+- **Statistics** — search for `10+`, `13`, `$250K+`. These are set from the info you
+  gave; adjust anytime.
+- **Contact info** — search for `gwconsulting2025@gmail.com` or `010-2266-1187`.
 - **Colors** — near the top of the file, look for `--navy` and `--gold`. Change the
   color codes (like `#0f2c4c`) to re-brand the whole site at once.
 

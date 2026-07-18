@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GW Consulting — US University Admissions for International Students in Korea</title>
+  <meta name="description" content="GW Consulting helps international school students in Korea gain admission to top US universities. Personalized guidance on applications, essays, and standardized tests." />
+
+  <!-- ===================== SOCIAL SHARING PREVIEW ===================== -->
+  <meta property="og:title" content="GW Consulting — US University Admissions Consulting" />
+  <meta property="og:description" content="Personalized US university admissions guidance for international students in Korea." />
+  <meta property="og:type" content="website" />
+
+  <!-- ===================== FONTS ===================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       DESIGN TOKENS  —  Change these values to re-brand the site
+       ========================================================= */
+    :root {
+      --navy:      #0f2c4c;   /* main brand color (headers, buttons) */
+      --navy-dark: #0a1f38;
+      --gold:      #c8a34e;   /* accent color (highlights, underlines) */
+      --gold-soft: #e7d3a1;
+      --ink:       #1c2733;   /* body text */
+      --muted:     #5b6875;   /* secondary text */
+      --line:      #e4e8ee;   /* borders */
+      --bg:        #ffffff;
+      --bg-soft:   #f6f8fb;   /* alternating section background */
+      --bg-tint:   #eef3f9;
+      --radius:    16px;
+      --shadow:    0 10px 40px rgba(15,44,76,0.10);
+      --shadow-sm: 0 4px 18px rgba(15,44,76,0.08);
+      --max:       1150px;
+    }
+
+    /* =========================================================
+       BASE RESET
+       ========================================================= */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.2; color: var(--navy); }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    section { padding: 88px 0; }
+    .eyebrow {
+      display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+    }
+    .section-title { font-size: clamp(28px, 4vw, 42px); margin-bottom: 16px; }
+    .section-intro { color: var(--muted); font-size: 18px; max-width: 640px; margin: 0 auto 52px; text-align: center; }
+    .center { text-align: center; }
+
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
+    .btn {
+      display: inline-block; font-weight: 600; font-size: 16px; padding: 15px 30px;
+      border-radius: 999px; cursor: pointer; border: 2px solid transparent;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .btn-primary { background: var(--gold); color: var(--navy-dark); box-shadow: var(--shadow-sm); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(200,163,78,0.45); }
+    .btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,0.5); }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+    .btn-navy { background: var(--navy); color: #fff; }
+    .btn-navy:hover { transform: translateY(-2px); background: var(--navy-dark); }
+
+    /* =========================================================
+       HEADER / NAV
+       ========================================================= */
+    header {
+      position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92);
+      backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .logo { display: flex; align-items: center; gap: 11px; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px; color: var(--navy); }
+    .logo-mark {
+      width: 40px; height: 40px; border-radius: 10px; background: var(--navy); color: var(--gold);
+      display: grid; place-items: center; font-size: 18px; font-weight: 700; letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a { font-size: 15px; font-weight: 500; color: var(--ink); transition: color .15s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { padding: 10px 22px; font-size: 15px; }
+    .menu-toggle { display: none; background: none; border: none; font-size: 26px; color: var(--navy); cursor: pointer; }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%); color: #fff; overflow: hidden; position: relative; }
+    .hero::after {
+      content: ""; position: absolute; top: -120px; right: -120px; width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(200,163,78,0.22), transparent 65%); border-radius: 50%;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; position: relative; z-index: 2; }
+    .hero h1 { color: #fff; font-size: clamp(34px, 5.2vw, 56px); margin-bottom: 22px; }
+    .hero h1 .hl { color: var(--gold); }
+    .hero p.lead { font-size: 19px; color: #d5deea; margin-bottom: 32px; max-width: 540px; }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 30px; }
+    .hero-trust { display: flex; gap: 26px; flex-wrap: wrap; font-size: 14px; color: #b9c6d6; }
+    .hero-trust span { display: flex; align-items: center; gap: 8px; }
+    .hero-trust .dot { color: var(--gold); }
+
+    .hero-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px; padding: 30px; backdrop-filter: blur(4px);
+    }
+    .hero-card h3 { color: #fff; font-size: 20px; margin-bottom: 6px; }
+    .hero-card p.sub { color: #b9c6d6; font-size: 14px; margin-bottom: 22px; }
+    .mini-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .mini-stat { background: rgba(255,255,255,0.07); border-radius: 12px; padding: 16px 12px; text-align: center; }
+    .mini-stat .num { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--gold); font-weight: 700; }
+    .mini-stat .lbl { font-size: 12px; color: #cdd8e6; margin-top: 4px; }
+
+    /* =========================================================
+       LOGO / TRUST STRIP
+       ========================================================= */
+    .strip { background: var(--bg-soft); padding: 34px 0; border-bottom: 1px solid var(--line); }
+    .strip p { text-align: center; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+    .strip-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 40px; }
+    .strip-logos span { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: #9aa7b6; }
+
+    /* =========================================================
+       CARDS GRID (services, why, process)
+       ========================================================= */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .card {
+      background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 32px 28px; transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .card .ico { width: 52px; height: 52px; border-radius: 13px; background: var(--bg-tint); color: var(--navy); display: grid; place-items: center; font-size: 24px; margin-bottom: 18px; }
+    .card h3 { font-size: 21px; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 15px; }
+
+    /* WHY US on soft bg */
+    .why { background: var(--bg-soft); }
+    .why .card { background: #fff; }
+
+    /* =========================================================
+       PROCESS (numbered steps)
+       ========================================================= */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; counter-reset: step; }
+    .step { position: relative; padding-top: 12px; }
+    .step .n {
+      width: 46px; height: 46px; border-radius: 50%; background: var(--navy); color: var(--gold);
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 20px;
+      display: grid; place-items: center; margin-bottom: 16px;
+    }
+    .step h3 { font-size: 19px; margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 15px; }
+
+    /* =========================================================
+       STATS BAND
+       ========================================================= */
+    .stats { background: var(--navy); color: #fff; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; text-align: center; }
+    .stats .big { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 52px); color: var(--gold); font-weight: 700; }
+    .stats .cap { color: #cbd6e4; font-size: 15px; margin-top: 6px; }
+
+    /* =========================================================
+       TESTIMONIALS
+       ========================================================= */
+    .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .quote { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 28px; box-shadow: var(--shadow-sm); }
+    .quote .stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; margin-bottom: 14px; }
+    .quote p { font-size: 15px; color: var(--ink); font-style: italic; margin-bottom: 20px; }
+    .quote .who { display: flex; align-items: center; gap: 12px; }
+    .quote .avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--bg-tint); color: var(--navy); display: grid; place-items: center; font-weight: 700; }
+    .quote .who .name { font-weight: 600; font-size: 15px; }
+    .quote .who .role { font-size: 13px; color: var(--muted); }
+
+    /* =========================================================
+       FAQ
+       ========================================================= */
+    .faq { max-width: 780px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-q {
+      width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+      padding: 22px 0; font-size: 18px; font-weight: 600; color: var(--navy);
+      display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: 'Inter', sans-serif;
+    }
+    .faq-q .plus { color: var(--gold); font-size: 24px; transition: transform .2s; flex-shrink: 0; }
+    .faq-item.open .faq-q .plus { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .28s ease; color: var(--muted); font-size: 16px; }
+    .faq-item.open .faq-a { max-height: 320px; }
+    .faq-a p { padding-bottom: 22px; }
+
+    /* =========================================================
+       CONTACT
+       ========================================================= */
+    .contact { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%); color: #fff; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+    .contact h2 { color: #fff; }
+    .contact .section-intro { text-align: left; margin: 0 0 28px; color: #cbd6e4; }
+    .contact-info li { list-style: none; display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; color: #dbe4ef; font-size: 16px; }
+    .contact-info .ci-ico { color: var(--gold); font-size: 20px; }
+    .form { background: #fff; border-radius: 20px; padding: 32px; box-shadow: var(--shadow); }
+    .form label { display: block; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
+    .field { margin-bottom: 18px; }
+    .form input, .form select, .form textarea {
+      width: 100%; padding: 13px 15px; border: 1px solid var(--line); border-radius: 10px;
+      font-family: inherit; font-size: 15px; color: var(--ink); background: #fff; transition: border .15s;
+    }
+    .form input:focus, .form select:focus, .form textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,163,78,0.18); }
+    .form textarea { resize: vertical; min-height: 110px; }
+    .form .btn { width: 100%; margin-top: 6px; }
+    .form-note { font-size: 13px; color: var(--muted); text-align: center; margin-top: 14px; }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    footer { background: var(--navy-dark); color: #aab6c6; padding: 54px 0 30px; }
+    .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    footer .logo { color: #fff; margin-bottom: 14px; }
+    footer p { font-size: 14px; max-width: 320px; }
+    .foot-col h4 { color: #fff; font-size: 15px; margin-bottom: 16px; font-family: 'Inter', sans-serif; }
+    .foot-col a { display: block; font-size: 14px; margin-bottom: 10px; color: #aab6c6; transition: color .15s; }
+    .foot-col a:hover { color: var(--gold); }
+    .foot-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; text-align: center; font-size: 13px; color: #8695a6; }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 900px) {
+      .hero-grid, .contact-grid { grid-template-columns: 1fr; }
+      .grid-3, .quotes { grid-template-columns: 1fr 1fr; }
+      .steps, .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      section { padding: 60px 0; }
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .nav-links.show {
+        display: flex; flex-direction: column; position: absolute; top: 74px; left: 0; right: 0;
+        background: #fff; padding: 20px 24px; gap: 18px; border-bottom: 1px solid var(--line); box-shadow: var(--shadow-sm);
+      }
+      .grid-3, .quotes, .steps, .stats-grid { grid-template-columns: 1fr; }
+      .mini-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================= HEADER ============================= -->
+  <header>
+    <div class="container nav">
+      <a href="#top" class="logo">
+        <span class="logo-mark">GW</span>
+        <span>GW Consulting</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#process">How It Works</a>
+        <a href="#results">Results</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="btn btn-navy nav-cta">Free Consultation</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- ============================= HERO ============================= -->
+  <section class="hero" id="top" style="padding-top:70px;">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">US University Admissions · Based in Korea</span>
+        <h1>Your Path to a <span class="hl">Top US University</span> Starts Here</h1>
+        <p class="lead">
+          GW Consulting guides international school students in Korea through every step of the US
+          college application — from building a standout profile to submitting a winning essay.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Book a Free Consultation</a>
+          <a href="#services" class="btn btn-outline">Explore Services</a>
+        </div>
+        <div class="hero-trust">
+          <span><span class="dot">&#9679;</span> 1-on-1 personalized mentoring</span>
+          <span><span class="dot">&#9679;</span> English &amp; Korean support</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Trusted by families across Korea</h3>
+        <p class="sub">Real guidance from application to acceptance.</p>
+        <div class="mini-stats">
+          <div class="mini-stat"><div class="num">150+</div><div class="lbl">Students Guided</div></div>
+          <div class="mini-stat"><div class="num">92%</div><div class="lbl">Top-Choice Rate</div></div>
+          <div class="mini-stat"><div class="num">1:1</div><div class="lbl">Personal Coaching</div></div>
+        </div>
+        <div style="margin-top:22px;">
+          <a href="#contact" class="btn btn-primary" style="width:100%; text-align:center;">Start Your Journey</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= TRUST STRIP ============================= -->
+  <div class="strip">
+    <div class="container">
+      <p>Our students have earned admission to</p>
+      <div class="strip-logos">
+        <span>Cornell</span><span>UCLA</span><span>NYU</span><span>Michigan</span>
+        <span>Boston University</span><span>UC Berkeley</span><span>USC</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= SERVICES ============================= -->
+  <section id="services">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">What We Offer</span>
+        <h2 class="section-title">Services Built for Your Success</h2>
+        <p class="section-intro">Comprehensive, personalized support tailored to international students aiming for US universities.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="ico">&#127891;</div>
+          <h3>College Admissions Strategy</h3>
+          <p>A personalized roadmap and school list built around your goals, grades, and dream schools — from freshman year to submission day.</p>
+        </div>
+        <div class="card">
+          <div class="ico">&#9998;</div>
+          <h3>Essay &amp; Personal Statement Coaching</h3>
+          <p>One-on-one guidance to craft authentic, memorable essays that make admissions officers take notice.</p>
+        </div>
+        <div class="card">
+          <div class="ico">&#128218;</div>
+          <h3>SAT / ACT &amp; TOEFL Planning</h3>
+          <p>Smart test timelines, prep resources, and score-target strategy so standardized tests never hold you back.</p>
+        </div>
+        <div class="card">
+          <div class="ico">&#127942;</div>
+          <h3>Extracurricular &amp; Profile Building</h3>
+          <p>Turn your activities, leadership, and passions into a compelling story that stands out in a competitive pool.</p>
+        </div>
+        <div class="card">
+          <div class="ico">&#128196;</div>
+          <h3>Application &amp; Common App Support</h3>
+          <p>Hands-on help with the Common App, supplements, recommendations, and deadlines — organized and stress-free.</p>
+        </div>
+        <div class="card">
+          <div class="ico">&#128176;</div>
+          <h3>Scholarship &amp; Financial Aid Guidance</h3>
+          <p>Identify scholarships and aid opportunities and present your application to maximize your funding potential.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= WHY US ============================= -->
+  <section class="why">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">Why GW Consulting</span>
+        <h2 class="section-title">Guidance You Can Trust</h2>
+        <p class="section-intro">We combine deep knowledge of US admissions with a real understanding of international students in Korea.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="ico">&#127757;</div>
+          <h3>We Understand Both Worlds</h3>
+          <p>We know the Korean international school system and exactly what US universities look for — bridging the gap for you.</p>
+        </div>
+        <div class="card">
+          <div class="ico">&#128172;</div>
+          <h3>Bilingual Support</h3>
+          <p>Clear communication in both English and Korean, so students and parents always feel informed and confident.</p>
+        </div>
+        <div class="card">
+          <div class="ico">&#10024;</div>
+          <h3>Truly Personalized</h3>
+          <p>No templates, no shortcuts. Every plan is built around one student — you — and your unique strengths and goals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= PROCESS ============================= -->
+  <section id="process">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">How It Works</span>
+        <h2 class="section-title">Your Journey in 4 Simple Steps</h2>
+        <p class="section-intro">A clear, supportive process from our first conversation to your acceptance letter.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h3>Free Consultation</h3>
+          <p>We meet to understand your goals, background, and dream schools — no pressure, no cost.</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3>Personalized Plan</h3>
+          <p>We build a custom roadmap covering academics, tests, essays, and activities.</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3>1-on-1 Guidance</h3>
+          <p>Regular mentoring sessions keep you on track and confident at every milestone.</p>
+        </div>
+        <div class="step">
+          <div class="n">4</div>
+          <h3>Apply &amp; Succeed</h3>
+          <p>We polish every application detail and celebrate your acceptances together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= STATS ============================= -->
+  <section class="stats" id="results">
+    <div class="container">
+      <div class="stats-grid">
+        <div><div class="big">150+</div><div class="cap">Students Guided</div></div>
+        <div><div class="big">92%</div><div class="cap">Admitted to a Top Choice</div></div>
+        <div><div class="big">40+</div><div class="cap">US Universities</div></div>
+        <div><div class="big">7+</div><div class="cap">Years of Experience</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= TESTIMONIALS ============================= -->
+  <section class="why">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">Success Stories</span>
+        <h2 class="section-title">What Families Say</h2>
+        <p class="section-intro">Real words from students and parents we've had the privilege to guide.</p>
+      </div>
+      <div class="quotes">
+        <div class="quote">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"GW Consulting helped my daughter tell her story in a way no one else could. She got into her dream school on the East Coast."</p>
+          <div class="who"><div class="avatar">P</div><div><div class="name">Mrs. Park</div><div class="role">Parent · Seoul</div></div></div>
+        </div>
+        <div class="quote">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"I felt lost about US applications. My mentor made everything clear, step by step. The essay coaching was a game changer."</p>
+          <div class="who"><div class="avatar">J</div><div><div class="name">Jiwon L.</div><div class="role">Student · Class of 2025</div></div></div>
+        </div>
+        <div class="quote">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"Professional, patient, and truly caring. They understood exactly what my son needed as an international applicant."</p>
+          <div class="who"><div class="avatar">K</div><div><div class="name">Mr. Kim</div><div class="role">Parent · Incheon</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FAQ ============================= -->
+  <section id="faq">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">Questions</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-intro">Everything you need to know before getting started.</p>
+      </div>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q">When should my child start working with a consultant? <span class="plus">+</span></button>
+          <div class="faq-a"><p>The earlier the better — ideally in grade 9 or 10 — so we can build a strong profile over time. That said, we successfully help students at every stage, including seniors applying this year.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you support students at international schools in Korea? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes — that's our specialty. We work with students at international schools and Korean high schools who are aiming for universities in the United States.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can you communicate with parents in Korean? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Absolutely. We provide full support in both English and Korean so that students and parents always feel informed and comfortable.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How much do your services cost? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Every student's needs are different, so we offer flexible packages. Book a free consultation and we'll recommend the best option for your goals and budget.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you guarantee admission to a specific university? <span class="plus">+</span></button>
+          <div class="faq-a"><p>No ethical consultant can guarantee admission. What we guarantee is expert guidance, honest advice, and an application that presents you at your very best.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= CONTACT ============================= -->
+  <section class="contact" id="contact">
+    <div class="container contact-grid">
+      <div>
+        <span class="eyebrow">Get Started</span>
+        <h2 class="section-title">Book Your Free Consultation</h2>
+        <p class="section-intro">Tell us a little about yourself and we'll reach out within 24 hours to schedule your first conversation — completely free.</p>
+        <ul class="contact-info">
+          <li><span class="ci-ico">&#9993;</span><div><strong style="color:#fff;">Email</strong><br>hello@gwconsulting.com</div></li>
+          <li><span class="ci-ico">&#9742;</span><div><strong style="color:#fff;">Phone / KakaoTalk</strong><br>+82 10-0000-0000</div></li>
+          <li><span class="ci-ico">&#128205;</span><div><strong style="color:#fff;">Location</strong><br>Seoul, South Korea (online sessions available)</div></li>
+        </ul>
+      </div>
+
+      <!-- NOTE: This form currently just shows a thank-you message.
+           See the plan / README for how to connect it to your email. -->
+      <form class="form" id="contactForm" novalidate>
+        <div class="field">
+          <label for="name">Student / Parent Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="grade">Current Grade</label>
+          <select id="grade" name="grade">
+            <option value="">Select…</option>
+            <option>Grade 9</option>
+            <option>Grade 10</option>
+            <option>Grade 11</option>
+            <option>Grade 12</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">How can we help?</label>
+          <textarea id="message" name="message" placeholder="Tell us about your goals or questions…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Request My Free Consultation</button>
+        <p class="form-note">We'll respond within 24 hours. Your information is kept private.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================= FOOTER ============================= -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <a href="#top" class="logo"><span class="logo-mark">GW</span><span>GW Consulting</span></a>
+          <p>Helping international students in Korea earn admission to top US universities through personalized, honest guidance.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Explore</h4>
+          <a href="#services">Services</a>
+          <a href="#process">How It Works</a>
+          <a href="#results">Results</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <a href="mailto:hello@gwconsulting.com">hello@gwconsulting.com</a>
+          <a href="#contact">Free Consultation</a>
+          <a href="#top">Back to Top</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        &copy; 2026 GW Consulting. All rights reserved. · Seoul, South Korea
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================= JAVASCRIPT ============================= -->
+  <script>
+    // Mobile menu toggle
+    var menuToggle = document.getElementById('menuToggle');
+    var navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', function () {
+      navLinks.classList.toggle('show');
+    });
+    // Close mobile menu after clicking a link
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { navLinks.classList.remove('show'); });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.parentElement;
+        item.classList.toggle('open');
+      });
+    });
+
+    // Contact form — friendly demo behavior (no backend yet)
+    var form = document.getElementById('contactForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      if (!name || !email) {
+        alert('Please enter your name and email so we can reach you.');
+        return;
+      }
+      form.innerHTML = '<div style="text-align:center; padding:30px 10px;">' +
+        '<div style="font-size:44px;">&#127881;</div>' +
+        '<h3 style="margin:14px 0 8px;">Thank you, ' + name.replace(/</g,'') + '!</h3>' +
+        '<p style="color:#5b6875;">Your request has been received. We\'ll email you at <strong>' +
+        email.replace(/</g,'') + '</strong> within 24 hours to schedule your free consultation.</p></div>';
+    });
+  </script>
+</body>
+</html>

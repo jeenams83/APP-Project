@@ -12,7 +12,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Serif+KR:wght@500;600;700&family=Playfair+Display:wght@600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>document.documentElement.classList.add('js');</script>
 
   <style>
     :root {
@@ -176,6 +177,34 @@
 
     .matters .ico { background:var(--navy); color:var(--gold); font-family:'Playfair Display',serif; font-weight:700; }
     .closing-quote { text-align:center; max-width:720px; margin:46px auto 0; font-family:'Playfair Display',serif; font-size:clamp(19px,3vw,26px); color:var(--navy); font-style:italic; }
+
+    /* =========================================================
+       우아하고 품격 있는 디자인 (ELEGANT ENHANCEMENTS)
+       ========================================================= */
+    h1, h2, h3 { font-family: 'Cormorant Garamond', 'Noto Serif KR', serif; font-weight: 700; letter-spacing: 0.2px; line-height: 1.25; }
+    .section-title { font-size: clamp(28px, 4.4vw, 46px); }
+    .center .section-title { position: relative; padding-bottom: 24px; }
+    .center .section-title::after { content: ""; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 66px; height: 3px; background: linear-gradient(90deg, var(--gold-soft), var(--gold)); border-radius: 2px; }
+    .eyebrow { letter-spacing: 0.14em; }
+
+    .btn { letter-spacing: 0.3px; }
+
+    .logo-mark { border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--gold); }
+
+    .hero-poster { border: 8px solid #fff; box-shadow: 0 0 0 1px var(--gold-soft), 0 30px 80px rgba(0,0,0,0.35); }
+
+    .card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+    .card:hover { border-color: var(--gold-soft); }
+
+    .quote { position: relative; overflow: hidden; }
+    .quote::before { content: '\201C'; position: absolute; top: 2px; right: 20px; font-family: 'Cormorant Garamond', serif; font-size: 96px; line-height: 1; color: var(--gold-soft); opacity: .45; pointer-events: none; }
+
+    .stats .big, .mini-stat .num, .step .n, .stage .stage-grade { font-family: 'Playfair Display', 'Cormorant Garamond', serif; }
+    .stats { border-top: 3px solid var(--gold); }
+
+    .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+    .js .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1 !important; transform: none !important; } }
 
     @media (max-width:900px) {
       .hero-grid, .contact-grid { grid-template-columns:1fr; }
@@ -677,6 +706,17 @@
         '<p style="color:#5b6875;">신청이 접수되었습니다. <strong>' + email.replace(/</g,'') +
         '</strong> 으로 24시간 이내에 연락드려 무료 상담 일정을 잡아 드리겠습니다.</p></div>';
     });
+
+    // 우아한 스크롤 리빌
+    (function () {
+      var els = document.querySelectorAll('section > .container, .strip > .container');
+      els.forEach(function (el) { el.classList.add('reveal'); });
+      if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.06 });
+      els.forEach(function (el) { io.observe(el); });
+    })();
   </script>
 </body>
 </html>

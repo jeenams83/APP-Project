@@ -16,9 +16,9 @@
 
   <style>
     :root {
-      --navy:#0f2c4c; --navy-dark:#0a1f38; --gold:#c8a34e; --gold-soft:#e7d3a1;
-      --ink:#1c2733; --muted:#5b6875; --line:#e4e8ee; --bg:#ffffff;
-      --bg-soft:#f6f8fb; --bg-tint:#eef3f9; --radius:16px;
+      --navy:#0e6e63; --navy-dark:#0a5049; --gold:#c8a34e; --gold-soft:#e7d3a1;
+      --ink:#1b2b28; --muted:#566b66; --line:#dde9e5; --bg:#ffffff;
+      --bg-soft:#f0f7f5; --bg-tint:#e3efeb; --radius:16px;
       --shadow:0 10px 40px rgba(15,44,76,0.10); --shadow-sm:0 4px 18px rgba(15,44,76,0.08); --max:1150px;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -146,6 +146,11 @@
     .foot-col a:hover { color:var(--gold); }
     .foot-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:22px; text-align:center; font-size:13px; color:#8695a6; }
 
+    /* 히어로 포스터 (업로드한 배너 이미지) */
+    .hero-wrap { display:flex; flex-direction:column; align-items:center; gap:30px; position:relative; z-index:2; }
+    .hero-poster { display:block; width:auto; max-width:100%; max-height:82vh; height:auto; border-radius:18px; box-shadow:0 24px 70px rgba(0,0,0,0.32); }
+    .hero-actions { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+
     /* 학년별 서비스 안내 */
     .guide { background:var(--bg-soft); }
     .stage-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:46px; }
@@ -213,36 +218,13 @@
   </header>
 
   <!-- ============================= 히어로 ============================= -->
-  <section class="hero" id="top" style="padding-top:70px;">
-    <div class="container hero-grid">
-      <div>
-        <span class="eyebrow">미국 대학 입시 · 인천 송도</span>
-        <h1>미국 <span class="hl">명문 대학</span>으로 가는 길,<br>여기서 시작됩니다</h1>
-        <p class="lead">
-          GW Consulting은 한국의 국제 학생들이 미국 대학 지원의 모든 과정을 성공적으로 준비하도록 돕습니다.
-          <strong>10년 이상의 입시·내신(GPA)·SAT 지도 경험</strong>을 바탕으로 함께합니다.
-        </p>
-        <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary">무료 상담 신청</a>
-          <a href="#results" class="btn btn-outline">2026 합격 실적 보기</a>
-        </div>
-        <div class="hero-trust">
-          <span><span class="dot">&#9679;</span> 1:1 맞춤 멘토링</span>
-          <span><span class="dot">&#9679;</span> 영어 &amp; 한국어 지원</span>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <h3>검증된 실적, 실제 장학금</h3>
-        <p class="sub">2026년 미국 전역 대학 합격</p>
-        <div class="mini-stats">
-          <div class="mini-stat"><div class="num">10년+</div><div class="lbl">지도 경력</div></div>
-          <div class="mini-stat"><div class="num">13곳</div><div class="lbl">2026 합격</div></div>
-          <div class="mini-stat"><div class="num">$25만+</div><div class="lbl">장학금 획득</div></div>
-        </div>
-        <div style="margin-top:22px;">
-          <a href="#contact" class="btn btn-primary" style="width:100%; text-align:center;">지금 시작하기</a>
-        </div>
+  <section class="hero" id="top" style="padding-top:44px; padding-bottom:56px;">
+    <div class="container hero-wrap">
+      <img class="hero-poster" src="images/gw-hero.jpg"
+           alt="GW Consulting — 국제학교 학생들을 위한 미국대학 입시 전문 컨설팅" />
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">무료 상담 신청</a>
+        <a href="#results" class="btn btn-outline">2026 합격 실적 보기</a>
       </div>
     </div>
   </section>

@@ -21,16 +21,16 @@
        DESIGN TOKENS  —  Change these values to re-brand the site
        ========================================================= */
     :root {
-      --navy:      #0f2c4c;   /* main brand color (headers, buttons) */
-      --navy-dark: #0a1f38;
+      --navy:      #0e6e63;   /* main brand color: teal-green (headers, buttons) */
+      --navy-dark: #0a5049;
       --gold:      #c8a34e;   /* accent color (highlights, underlines) */
       --gold-soft: #e7d3a1;
-      --ink:       #1c2733;   /* body text */
-      --muted:     #5b6875;   /* secondary text */
-      --line:      #e4e8ee;   /* borders */
+      --ink:       #1b2b28;   /* body text */
+      --muted:     #566b66;   /* secondary text */
+      --line:      #dde9e5;   /* borders */
       --bg:        #ffffff;
-      --bg-soft:   #f6f8fb;   /* alternating section background */
-      --bg-tint:   #eef3f9;
+      --bg-soft:   #f0f7f5;   /* alternating section background */
+      --bg-tint:   #e3efeb;
       --radius:    16px;
       --shadow:    0 10px 40px rgba(15,44,76,0.10);
       --shadow-sm: 0 4px 18px rgba(15,44,76,0.08);
@@ -247,6 +247,13 @@
     .foot-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; text-align: center; font-size: 13px; color: #8695a6; }
 
     /* =========================================================
+       HERO POSTER (uploaded banner image)
+       ========================================================= */
+    .hero-wrap { display: flex; flex-direction: column; align-items: center; gap: 30px; position: relative; z-index: 2; }
+    .hero-poster { display: block; width: auto; max-width: 100%; max-height: 82vh; height: auto; border-radius: 18px; box-shadow: 0 24px 70px rgba(0,0,0,0.32); }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+    /* =========================================================
        GRADE-BY-GRADE SERVICE GUIDE
        ========================================================= */
     .guide { background: var(--bg-soft); }
@@ -322,37 +329,13 @@
   </header>
 
   <!-- ============================= HERO ============================= -->
-  <section class="hero" id="top" style="padding-top:70px;">
-    <div class="container hero-grid">
-      <div>
-        <span class="eyebrow">US University Admissions · Songdo, Incheon</span>
-        <h1>Your Path to a <span class="hl">Top US University</span> Starts Here</h1>
-        <p class="lead">
-          GW Consulting guides international students in Korea through every step of the US
-          college application — backed by <strong>10+ years of experience</strong> in admissions,
-          GPA support, and SAT preparation.
-        </p>
-        <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary">Book a Free Consultation</a>
-          <a href="#results" class="btn btn-outline">See 2026 Results</a>
-        </div>
-        <div class="hero-trust">
-          <span><span class="dot">&#9679;</span> 1-on-1 personalized mentoring</span>
-          <span><span class="dot">&#9679;</span> English &amp; Korean support</span>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <h3>Proven results, real scholarships</h3>
-        <p class="sub">Class of 2026 admissions across the US.</p>
-        <div class="mini-stats">
-          <div class="mini-stat"><div class="num">10+</div><div class="lbl">Years Experience</div></div>
-          <div class="mini-stat"><div class="num">13</div><div class="lbl">2026 Acceptances</div></div>
-          <div class="mini-stat"><div class="num">$250K+</div><div class="lbl">Scholarships Won</div></div>
-        </div>
-        <div style="margin-top:22px;">
-          <a href="#contact" class="btn btn-primary" style="width:100%; text-align:center;">Start Your Journey</a>
-        </div>
+  <section class="hero" id="top" style="padding-top:44px; padding-bottom:56px;">
+    <div class="container hero-wrap">
+      <img class="hero-poster" src="images/gw-hero.jpg"
+           alt="GW Consulting — US College Consulting for International School Students in Korea" />
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Book a Free Consultation</a>
+        <a href="#results" class="btn btn-outline">See 2026 Results</a>
       </div>
     </div>
   </section>
